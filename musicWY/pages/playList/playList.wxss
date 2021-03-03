@@ -1,0 +1,300 @@
+/* pages/song/song.wxss */
+pages {
+    width: 100%;
+    height: 100%;
+}
+
+/* 导航栏 */
+.outer {
+    width: 100%;
+    height: 10%;
+    position: relative;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar {
+    width: 100%;
+    background: linear-gradient(to right, #2a2924, #433933, #2a2924);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    /* background: red; */
+    justify-content: center;
+    padding: 0 15%;
+    box-sizing: border-box;
+    color: #fff;
+
+}
+
+.songName {
+    font-size: 32rpx;
+}
+
+.singerName {
+    font-size: 24rpx;
+    color: #807b75;
+    margin-top: 10rpx;
+}
+
+.line {
+    width: 100%;
+    height: 2rpx;
+    background: linear-gradient(to right, #2a2924, #585151, #2a2924);
+
+}
+
+/* 音乐播放界面 */
+.songContainer {
+    background: linear-gradient(to right, #2a2924, #433933, #2a2924);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 90%;
+}
+
+.songContainer .keng {
+    width: 60rpx;
+    height: 60rpx;
+    background: white;
+    border-radius: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 102;
+}
+
+.kengMid {
+    width: 50%;
+    height: 50%;
+    background-color: rgb(95, 95, 95);
+    border-radius: 50%;
+}
+
+.songContainer .needle {
+    width: 192rpx;
+    height: 274rpx;
+    position: relative;
+    left: 58rpx;
+    top: -60rpx;
+    z-index: 101;
+    transform: rotateZ(-20deg);
+    transform-origin: 40rpx 0;
+    transition: transform 400ms;
+}
+
+.songContainer.active-play .needle {
+    transform: rotateZ(0deg);
+}
+
+@keyframes run {
+    from {
+        transform: rotateZ(0deg);
+    }
+
+    to {
+        transform: rotateZ(360deg);
+    }
+}
+
+.songContainer .discContainer {
+    width: 540rpx;
+    height: 540rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    top: -210rpx;
+    transform: rotateZ(360deg);
+    animation: run 6s infinite linear;
+    animation-play-state: paused;
+}
+
+.songContainer.active-play .discContainer {
+    animation-play-state: running;
+}
+
+.songContainer .discContainer .disc {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+}
+
+.songContainer .discContainer .bigImg {
+    position: absolute;
+    width: 330rpx;
+    height: 330rpx;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: 99;
+}
+
+.bottomContainer {
+    position: fixed;
+    bottom: 40rpx;
+    width: 100%;
+}
+
+/* 进度条 */
+.probarContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.probarContainer view {
+    color: #bbb;
+}
+
+/* 播放选项 */
+.musicControl {
+
+    width: 100%;
+    display: flex;
+    margin: 30rpx 0;
+    justify-content: space-between;
+}
+
+.musicControl text {
+    width: 20%;
+    text-align: center;
+    font-size: 50rpx;
+    color: #c9c9c7;
+    height: 120rpx;
+    line-height: 120rpx;
+    font-weight: 100;
+}
+
+.musicControl text.big {
+    font-size: 100rpx;
+}
+
+.musicControl text.preSong,
+.musicControl text.nextSong {
+    font-size: 80rpx;
+}
+
+.musicControl text.preSong:active,
+.musicControl text.nextSong:active {
+    color: tomato;
+}
+
+/* 列表区域 */
+.songList {
+    position: fixed;
+    width: 88%;
+    height: 68%;
+    background-color: #fff;
+    border-radius: 30rpx;
+    z-index: 1000;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 30rpx 40rpx;
+    box-sizing: border-box;
+    transition: top 200ms;
+    overflow: hidden;
+}
+
+.active-show-songList {
+    top: 28%;
+}
+
+/* 列表顶部 */
+.playMode {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70rpx;
+}
+
+.playMode .iconfont {
+    text-align: center;
+    font-size: 30rpx;
+    line-height: 80rpx;
+    font-weight: bold;
+    color: rgb(31, 23, 23);
+    margin: 0 15rpx 0 0;
+}
+
+.playMode .icon-lajitong {
+    margin: 0;
+}
+
+.currentPlay {
+    font-weight: bold;
+}
+
+.randomPlay {
+    display: flex;
+    align-items: center;
+}
+
+.randRight {
+    display: flex;
+    align-items: center;
+}
+
+.collect {
+    display: flex;
+    width: 200rpx;
+}
+
+.collection {
+    font-size: 26rpx;
+    display: flex;
+    align-items: center;
+}
+
+/* 播放列表 */
+.playList {
+    width: 100%;
+    height: 84%;
+    padding-top: 20rpx;
+    overflow: scroll;
+    padding-right: 65rpx;
+}
+
+.songs {
+    width: 100%;
+    height: 80rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.songs .icon-del2 {
+    font-size: 40rpx;
+}
+
+.songLeft text.songName {
+    font-size: 28rpx;
+
+}
+
+.songLeft text.gang {
+    margin: 0 5rpx;
+    color: rgb(170, 168, 168);
+
+}
+
+.songLeft text.singerName {
+    font-size: 20rpx;
+    color: rgb(170, 168, 168);
+}
+
+.activeSong .active {
+    color: #d43c33 !important;
+}
+
+.icon-yinleguan {
+    margin-right: 10rpx;
+    color: #d43c33;
+}

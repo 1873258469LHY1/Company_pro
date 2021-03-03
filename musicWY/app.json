@@ -1,0 +1,13 @@
+{
+  "pages": [
+    "pages/playList/playList"
+  ],
+  "requiredBackgroundModes":["audio", "location"],
+  "window": {
+    "backgroundColor": "#ffffff",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#d43c33"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

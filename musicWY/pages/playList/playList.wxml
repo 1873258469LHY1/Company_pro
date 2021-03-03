@@ -1,0 +1,82 @@
+<view class="outer" bindtap="handleHideSongList">
+    <view class="navbar">
+        <view class="songName">{{playNow.name}}</view>
+        <view class="singerName">{{playNow.author}}</view>
+    </view>
+    <view class="line"></view>
+</view>
+<view class="songContainer {{isPlay?'active-play':''}}" bindtap="handleHideSongList">
+    <view class="keng">
+        <view class="kengMid"></view>
+    </view>
+    <image class="needle" src="https://qncdn.mopic.mozigu.net/f/o1sdbeg7se04fbepg5g/needle.png"></image>
+    <view class="discContainer">
+        <image class="disc" src="https://qncdn.mopic.mozigu.net/f/o1sdbevebhq6e70djid/disc.png"></image>
+        <image class="bigImg" src="{{playNow.poster}}">
+        </image>
+    </view>
+    <view class="bottomContainer">
+        <!-- 进度条 -->
+        <view class="probarContainer" bindtouchEnd='handleStopFlashStop'>
+            <view>{{currentTime}}</view>
+            <slider bindtouchstart='handleStopFlashStart' bindchange="handleSlider" step='5' value='{{currentPosition}}'
+                style="width: 440rpx;" block-size='15' activeColor='red' max='440' />
+            <view>{{durationTime}}</view>
+        </view>
+
+        <!-- 底部播放选项区域 -->
+        <view class="musicControl">
+            <text class="iconfont icon-single-loop" hidden="{{playMode != 1}}" bindtap="handleSongMode"></text>
+            <text class="iconfont icon-shunxubofang" hidden="{{playMode != 2}}" bindtap="handleSongMode"></text>
+            <text class="iconfont icon-suijibofang" hidden="{{playMode != 3}}" bindtap="handleSongMode"></text>
+            <text class="iconfont icon-shangyiqu2 preSong" bindtap="handleNextPreSong"
+                data-preOrNextIndex="{{-1}}"></text>
+            <text class="iconfont big {{isPlay?'icon-bofang2':'icon-zanting'}}" bindtap="handlePlayStop"></text>
+            <text class="iconfont icon-xiayiqu nextSong" bindtap="handleNextPreSong" data-preOrNextIndex="{{1}}"></text>
+            <text class="iconfont icon-caidan" catchtap="handleShowSongList" songIndex="{{songIndex}}"
+                songsData="{{songsData}}"></text>
+        </view>
+    </view>
+</view>
+
+<view class="songList {{isShowList?'active-show-songList':'active-hide-songList'}}">
+    <view class="songListTop">
+        <view class="currentPlay">当前播放()</view>
+        <view class="playMode">
+            <view class="randomPlay">
+                <text class="iconfont icon-single-loop" hidden="{{playMode != 1}}" bindtap="handleSongMode"></text>
+                <text class="iconfont icon-shunxubofang" hidden="{{playMode != 2}}" bindtap="handleSongMode"></text>
+                <text class="iconfont icon-suijibofang" hidden="{{playMode != 3}}" bindtap="handleSongMode"></text>
+                <view class="collection" hidden="{{playMode != 1}}">
+                    单曲循环
+                </view>
+                <view class="collection" hidden="{{playMode != 2}}">
+                    顺序播放
+                </view>
+                <view class="collection" hidden="{{playMode != 3}}">
+                    随机播放
+                </view>
+            </view>
+            <view class="randRight">
+                <view class="collect">
+                    <text class="iconfont icon-yiliaoxiang"></text>
+                    <view class="collection">
+                        收藏全部
+                    </view>
+                </view>
+                <text class="iconfont icon-lajitong"> </text>
+            </view>
+        </view>
+    </view>
+    <view class="playList">
+        <view class="songs" wx:for='{{songsData}}' wx:key="index" bindtap="handleChooseSong" data-index="{{index}}">
+            <view class="songLeft {{songIndex===index?'activeSong':''}}">
+                <text class="iconfont icon-yinleguan" wx:if='{{songIndex===index}}'></text>
+                <text class="active songName">{{item.name}}</text>
+                <text class="active gang">-</text>
+                <text class="active singerName">{{item.author}}</text>
+            </view>
+            <view class="iconfont icon-del2"></view>
+        </view>
+    </view>
+</view>
